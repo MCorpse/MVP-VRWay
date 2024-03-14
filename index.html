@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Відео Перегляд</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        a-scene {
+            height: 100vh;
+        }
+        #video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>VRWAY</h1>
+    <a-scene>
+        <!-- Додайте сферу, що відтворює відео -->
+        <a-sphere src="#video" radius="10"></a-sphere>
+
+        <!-- Відео-текстура -->
+        <video id="video" crossorigin="anonymous" playsinline loop>
+            <!-- Замініть 'ваше-посилання-сюди' на посилання на ваше відео -->
+            <source src="https://www.youtube.com/watch?v=hEdzv7D4CbQ" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </a-scene>
+</body>
+</html>
