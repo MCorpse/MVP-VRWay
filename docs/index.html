@@ -1,44 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VR Відео Перегляд</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Video</title>
+    <meta name="description" content="Video - A-Frame">
+    <script src="https://raw.githubusercontent.com/aframevr/aframe/master/dist/aframe-master.js"></script>
+    <script src="https://raw.githubusercontent.com/aframevr/aframe/master/examples/js/play-on-click.js"></script>
+    <script src="https://raw.githubusercontent.com/aframevr/aframe/master/examples/js/hide-on-play.js"></script>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #4b0082; /* фіолетовий колір фону */
-            color: #ffffff; /* білий колір тексту */
-        }
-        a-scene {
-            height: 100vh;
-        }
-        #video {
-            width: 100%;
-            height: 100%;
-        }
-        h1 {
-            text-align: center;
-            padding-top: 20px;
-        }
+      body {
+        background-color: #7e57c2; /* Deep purple color */
+        color: #ffffff; /* White color for text */
+      }
+      a-camera {
+        color: #ffffff; /* White color for camera cursor */
+      }
+      a-entity[text] {
+        color: #ffffff; /* White color for text entities */
+      }
     </style>
-</head>
-<body>
-    <h1>VRWay</h1>
+  </head>
+  <body>
     <a-scene>
-        <!-- Додайте сферу, що відтворює відео -->
-        <a-sphere src="#video" radius="10"></a-sphere>
+      <a-assets>
+        <video id="videoBunny" preload="auto"
+               src="https://cdn.aframe.io/videos/bunny.mp4"
+               width="160" height="90" autoplay loop="true"
+               crossOrigin="anonymous" muted></video>
+        <video id="videoFireworks" preload="auto"
+               src="https://cdn.aframe.io/videos/fireworks.mp4"
+               width="160" height="90" autoplay loop="true"
+               crossOrigin="anonymous" muted></video>
+      </a-assets>
 
-        <!-- Відео-текстура -->
-        <video id="video" crossorigin="anonymous" playsinline loop>
-            <!-- Замініть 'ваше-посилання-сюди' на посилання на ваше відео -->
-            <source src="https://www.youtube.com/watch?v=hEdzv7D4CbQ" type="video/mp4">
-            Ваш браузер не підтримує відео.
-        </video>
+      <!--
+      SOURCE
+      Title:  Big Buck Bunny
+      Author: Blender Institute
+      URL:    https://peach.blender.org/
+      -->
+      <a-entity material="shader: flat; src: #videoBunny"
+                geometry="primitive: plane; width: 160; height: 90;"
+                position="0 60 -250"
+                rotation="0 35 0"
+                play-on-click
+                visible="false">
+      </a-entity>
+
+      <!--
+      SOURCE
+      Title:  Fireworks
+      Author: Motion Digital
+      URL:    https://www.videvo.net/profile/motiondigital/
+      -->
+      <a-entity material="shader: flat; src: #videoFireworks"
+                geometry="primitive: plane; width: 160; height: 90"
+                position="0 -60 -200"
+                rotation="0 -35 0"
+                play-on-click
+                visible="false">
+      </a-entity>
+      <a-camera>
+        <a-entity
+          position="0 0 -1.5"
+          text="align: center;
+                width: 6;
+                wrapCount: 100;
+                value: Click or tap to start video"
+          hide-on-play="#videoFireworks">
+        </a-entity>
+      </a-camera>
     </a-scene>
-</body>
+  </body>
 </html>
-
